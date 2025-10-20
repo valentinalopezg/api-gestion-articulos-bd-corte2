@@ -1,0 +1,28 @@
+{
+  "name": "api-gestion-articulos-bd-corte2",
+  "version": "1.0.0",
+  "description": "API desarrollada con Node.js, Express y MongoDB Atlas para la gestión de artículos científicos sobre desarrollo web y ciberseguridad. Proyecto correspondiente a la materia Bases de Datos – Corte 2 (Nuevas Tecnologías), realizado por Valentina López, Camilo Prieto y Alexander Chacon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "src/nodemon index.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valentinalopezg/api-gestion-articulos-bd-corte2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valentinalopezg/api-gestion-articulos-bd-corte2/issues"
+  },
+  "homepage": "https://github.com/valentinalopezg/api-gestion-articulos-bd-corte2#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
