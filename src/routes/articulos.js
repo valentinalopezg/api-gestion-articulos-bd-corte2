@@ -1,27 +1,31 @@
-import express from 'express';
-import Articulo from '../models/articuloModel.js';
-
+const express = require("express");
 const router = express.Router();
+const articuloSchema = require("../models/articuloModel");
 
-// Crear artículo
-router.post('/', async (req, res) => {
-  try {
-    const nuevoArticulo = new Articulo(req.body);
-    await nuevoArticulo.save();
-    res.status(201).json(nuevoArticulo);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+// Crear nuevo artículo (CREATE)
+router.post("/articulos", (req, res) => {
+  const articulo = articuloSchema(req.body);
+  articulo
+    .save()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
 
-// Obtener todos los artículos
-router.get('/', async (req, res) => {
-  try {
-    const articulos = await Articulo.find();
-    res.status(200).json(articulos);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+// Consultar todos los artículos (READ ALL)
+router.get("/articulos", (req, res) => {
+  articuloSchema
+    .find()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
 
-export default router;
+// Consultar un artículo por ID (READ ONE)
+router.get("/articulos/:id", (req, res) => {
+  const { id } = req.params;
+  articuloSchema
+    .findById(id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+
+module.exports = router;
