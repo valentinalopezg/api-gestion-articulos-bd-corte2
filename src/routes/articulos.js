@@ -58,4 +58,30 @@ router.put("/articulos/:id", async (req, res) => {
     res.status(500).json({ message: "Error al actualizar artículo", error: error.message });
   }
 });
+
+// Eliminar un artículo por ID (DELETE)
+router.delete("/articulos/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "ID inválido" });
+  }
+
+  try {
+    const articuloEliminado = await articuloSchema.findByIdAndDelete(id);
+
+    if (!articuloEliminado) {
+      return res.status(404).json({ message: "Artículo no encontrado" });
+    }
+
+    res.json({
+      message: "Artículo eliminado correctamente",
+      articulo: articuloEliminado,
+    });
+  } catch (error) {
+    console.error("Error eliminando artículo:", error);
+    res.status(500).json({ message: "Error al eliminar artículo", error: error.message });
+  }
+});
+
 module.exports = router;
