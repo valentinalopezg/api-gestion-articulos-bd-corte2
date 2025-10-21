@@ -4,10 +4,14 @@ const app = express();
 const port = 3000;
 const articuloRoutes = require("./routes/articulos");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
 require("dotenv").config();
 
+app.use(cors());
 app.use(parser.urlencoded({ extended: false }));
 app.use(parser.json());
+
 
 app.use("/api", articuloRoutes);
 
